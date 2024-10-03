@@ -3,7 +3,7 @@ const storeInSession = (key, value) => {
 }
 
 const lookInSession = (key) => {
-	return sessionStorage.setItem(key)
+	return sessionStorage.getItem(key)
 }
 
 const removeFromSession = (key) => {
