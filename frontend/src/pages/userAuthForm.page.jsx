@@ -2,7 +2,7 @@ import { useContext, useRef } from "react";
 import AnimationWrapper from "../common/page-animation";
 import InputBox from "../components/input.component";
 import googleIcon from '../imgs/google-icon.png';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from 'react-router-dom';
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 import { storeInSession } from "../common/session"
@@ -46,7 +46,7 @@ const UserAuthForm = ({ type }) => {
     let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/; // regex for password
 
     // Form Data
-    let form = new FormData(authForm.current);
+    let form = new FormData(formElement);
     let formData = {};
 
     for (let [key, value] of form.entries()) {
@@ -87,7 +87,7 @@ const UserAuthForm = ({ type }) => {
     <AnimationWrapper keyValue={type}>
       <section className="h-cover flex items-center justify-center">
 				<Toaster />
-        <form ref={authForm} className="w-[80%] max-w-[400px]">
+        <form id="formElement" className="w-[80%] max-w-[400px]">
           <h1 className="text-4xl font-gelasio capitalize text-center mb-24">
             {type == 'sign-in' ? 'Welcome back' : 'Join us today'}
           </h1>
