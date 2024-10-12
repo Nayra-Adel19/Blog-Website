@@ -2,42 +2,44 @@ import { Link } from "react-router-dom";
 import duckLogo from '../imgs/img-logo.png';
 import AnimationWrapper from "../common/page-animation";
 import defaultBanner from "../imgs/blog-banner.png";
-import { useContext } from "react";
-import axios from 'axios';
+import { useContext, useEffect } from "react";
+import { uploadImage } from '../common/upload-image';
 import { Toaster, toast } from "react-hot-toast";
 import { EditorContext } from "../pages/editor.pages";
+import EditorJS from '@editorjs/editorjs'
+import { tools } from "./tools.component";
+
 
 const BlogEditor = () => {
 		let { blog, blog: {title, banner, content, tags, des }, setBlog } = useContext(EditorContext)
 
-		console.log(blog)
+		// useEffect
+		useEffect(() => {
+			let editor = new EditorJS({
+				holderId: "textEditor",
+				data: '',
+				tools: tools,
+				placeholder: "Let's write an awesome story"
+			})
+		}, [])
 
     const handleBannerUpload = (e) => {
         const img = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(img);
-        reader.onloadend = () => {
-            const base64Image = reader.result;
 
-            let loadingToast = toast.loading("Uploading...");
+        let loadingToast = toast.loading("Uploading...");
 
-            axios.post(import.meta.env.VITE_SERVER_DOMAIN + '/upload', { image: base64Image })
-                .then(res => {
-                    toast.success("Upload complete! 👏");
-										setBlog({ ...blog, banner: res.data.url })
-                })
-                .catch(err => {
-                    toast.error("Upload failed!");
-                    console.error("Error:", err);
-                })
-                .finally(() => {
-                    toast.dismiss(loadingToast);
-                });
-        };
-        reader.onerror = (err) => {
-            toast.error("Failed to read the file");
-            console.error("FileReader Error:", err);
-        };
+				uploadImage(img)
+				.then((uploadedUrl) => {
+					toast.success("Upload complete! 👏");
+					setBlog((prevBlog) => ({ ...prevBlog, banner: uploadedUrl }));
+				})
+				.catch((err) => {
+					toast.error("Upload failed! 💔");
+					console.error("Error:", err);
+				})
+				.finally(() => {
+					toast.dismiss(loadingToast);
+				});
     };
 
 		const handleTitleKeyDown = (e) => {
@@ -109,6 +111,8 @@ const BlogEditor = () => {
 												></textarea>
 
 												<hr className="w-full opacity-10 my-5" />
+
+												<div id="textEditor" className="font-gelasio"></div>
 
                     </div>
                 </section>
