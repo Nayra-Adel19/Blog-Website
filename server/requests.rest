@@ -53,29 +53,34 @@
 #		"tags": ["tag1", "tag2"]
 #}
 
-POST http://localhost:3000/create-blog
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmRjOWJhNTJkNmY2NGM3NGJkZWVkOSIsImlhdCI6MTcyODgzNDE5N30.Y7YITjCFkCce427VMj36fadqcT4gxHKlXS-cWt8UmLQ
+#POST http://localhost:3000/create-blog
+#Content-Type: application/json
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmRjOWJhNTJkNmY2NGM3NGJkZWVkOSIsImlhdCI6MTcyODgzNDE5N30.Y7YITjCFkCce427VMj36fadqcT4gxHKlXS-cWt8UmLQ
+#
+#{
+#    "title": "MongoDB Test Blog",
+#    "banner": "https://example.com/test-banner.jpg",
+#    "des": "This is a short description to test MongoDB functionality.",
+#    "content": {
+#        "blocks": [
+#            {
+#                "type": "paragraph",
+#                "data": {
+#                    "text": "This is the first block of content in the test blog."
+#                }
+#            },
+#            {
+#                "type": "paragraph",
+#                "data": {
+#                    "text": "This is the second block of content to verify the structure."
+#                }
+#            }
+#        ]
+#    },
+#    "tags": ["mongodb", "test", "blog", "nodejs", "backend"]
+#}
 
-{
-    "title": "MongoDB Test Blog",
-    "banner": "https://example.com/test-banner.jpg",
-    "des": "This is a short description to test MongoDB functionality.",
-    "content": {
-        "blocks": [
-            {
-                "type": "paragraph",
-                "data": {
-                    "text": "This is the first block of content in the test blog."
-                }
-            },
-            {
-                "type": "paragraph",
-                "data": {
-                    "text": "This is the second block of content to verify the structure."
-                }
-            }
-        ]
-    },
-    "tags": ["mongodb", "test", "blog", "nodejs", "backend"]
-}
+
+# latest-blogs
+
+GET http://localhost:3000/latest-blogs
