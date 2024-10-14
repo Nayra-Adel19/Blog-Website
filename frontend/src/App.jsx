@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar.component';
+import HomePage from "./pages/home.page";
 import UserAuthForm from './pages/userAuthForm.page';
 import { createContext, useEffect, useState } from 'react';
 import { lookInSession } from './common/session';
@@ -13,13 +14,13 @@ const App = () => {
 	const [userAuth, setUserAuth] = useState({});
 
 	useEffect(() => {
-		
+
 		let userInSession = lookInSession("user");
 
 		userInSession ? setUserAuth(JSON.parse(userInSession)) : setUserAuth({ access_token: null })
 
 	}, [])
-	
+
 
 
 
@@ -28,6 +29,7 @@ const App = () => {
       <Routes>
 				<Route path="/editor" element={<Editor />} />
         <Route path="/" element={<Navbar />}>
+					<Route index element={<HomePage />} />
           <Route path="signin" element={<UserAuthForm type="sign-in" />} />
           <Route path="signup" element={<UserAuthForm type="sign-up" />} />
         </Route>
