@@ -1,0 +1,81 @@
+#POST http://localhost:3000/signup
+#Content-Type: application/json
+#
+#{
+#		"fullname": "basant44",
+#    "email": "basant44@gmail.com",
+#		"password": "Basant44"
+#}
+
+#POST http://localhost:3000/signin
+#Content-Type: application/json
+#
+#{
+#    "email": "basant44@gmail.com",
+#		"password": "Basant44"
+#}
+
+
+#POST http://localhost:3000/create-blog
+#Content-Type: application/json
+#
+#{
+#    "blog-name": "this is a test blog"
+#}
+
+#POST http://localhost:3000/create-blog
+#Content-Type: application/json
+#Authorization: Bearer agvsvdfnsdmfsehfkas
+#
+#{
+#    "title": "test add wrong token title"
+#}
+
+#POST http://localhost:3000/create-blog
+#Content-Type: application/json
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmRjOWJhNTJkNmY2NGM3NGJkZWVkOSIsImlhdCI6MTcyODgzNDE5N30.Y7YITjCFkCce427VMj36fadqcT4gxHKlXS-cWt8UmLQ
+#
+#{
+#    "title": "test add right token title"
+#}
+
+#POST http://localhost:3000/create-blog
+#Content-Type: application/json
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmRjOWJhNTJkNmY2NGM3NGJkZWVkOSIsImlhdCI6MTcyODgzNDE5N30.Y7YITjCFkCce427VMj36fadqcT4gxHKlXS-cWt8UmLQ
+#
+#{
+#    "title": "test title",
+#		"banner": "https://example.com/image-url",
+#		"des": "this is a short des test",
+#		"content": {
+#				"blocks": [ 1, 2 ]
+#			},
+#		"tags": ["tag1", "tag2"]
+#}
+
+POST http://localhost:3000/create-blog
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmRjOWJhNTJkNmY2NGM3NGJkZWVkOSIsImlhdCI6MTcyODgzNDE5N30.Y7YITjCFkCce427VMj36fadqcT4gxHKlXS-cWt8UmLQ
+
+{
+    "title": "MongoDB Test Blog",
+    "banner": "https://example.com/test-banner.jpg",
+    "des": "This is a short description to test MongoDB functionality.",
+    "content": {
+        "blocks": [
+            {
+                "type": "paragraph",
+                "data": {
+                    "text": "This is the first block of content in the test blog."
+                }
+            },
+            {
+                "type": "paragraph",
+                "data": {
+                    "text": "This is the second block of content to verify the structure."
+                }
+            }
+        ]
+    },
+    "tags": ["mongodb", "test", "blog", "nodejs", "backend"]
+}
