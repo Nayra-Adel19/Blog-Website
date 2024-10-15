@@ -204,6 +204,22 @@ server.get('/latest-blogs', (req, res) => {
         })
 })
 
+// Trending Blogs
+server.get('/trending-blogs', (req, res) => {
+
+    Blog.find({ draft: false })
+        .populate("author", "personal_info.profile_img personal_info.username personal_info.fullname -_id")
+        .sort({ "activity.total_reads": -1, "activity.total_likes": -1, "publishedAt": -1 })
+        .select("blog_id title publishedAt -_id")
+        .limit(5)
+        .then(blogs => {
+            return res.status(200).json({ blogs })
+        })
+        .catch(err => {
+            return res.status(500).json({ error: err.message })
+        })
+})
+
 // Create Blog
 server.post('/create-blog', verifyJWT, (req, res) => {
 
@@ -278,7 +294,7 @@ server.post('/get-blog', (req, res) => {
         .populate("author", "personal_info.fullname personal_info.username personal_info.profile_img")
         .select("title des content banner activity publishedAt blog_id tags")
         .then(blog => {
-            User.findOneAndUpdate({
+            user.findOneAndUpdate({
                     "personal_info.username": blog.author.personal_info.username
                 }, { $inc: { "account_info.total_reads": incrementVal } })
                 .catch(err => {
