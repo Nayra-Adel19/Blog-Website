@@ -87,4 +87,14 @@
 
 # /trending-blogs
 
-GET http://localhost:3000/trending-blogs
+#GET http://localhost:3000/trending-blogs
+
+
+# /search-blogs
+
+POST http://localhost:3000/search-blogs
+Content-Type: application/json
+
+{
+		"tag": "fast food"
+}
