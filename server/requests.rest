@@ -83,4 +83,8 @@
 
 # latest-blogs
 
-GET http://localhost:3000/latest-blogs
+#GET http://localhost:3000/latest-blogs
+
+# /trending-blogs
+
+GET http://localhost:3000/trending-blogs
