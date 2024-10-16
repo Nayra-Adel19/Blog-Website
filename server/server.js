@@ -223,9 +223,15 @@ server.post("/all-latest-blogs-count", (req, res) => {
 // Search Blogs Count
 server.post("/search-blogs-count", (req, res) => {
 
-    let { tag } = req.body;
+    let { tag, query } = req.body;
 
-    let findQuery = { tags: tag, draft: false };
+    let findQuery;
+
+    if (tag) {
+        findQuery = { tags: tag, draft: false };
+    } else if (query) {
+        findQuery = { draft: false, title: new RegExp(query, 'i') };
+    }
 
     Blog.countDocuments(findQuery)
         .then(count => {
@@ -256,9 +262,15 @@ server.get('/trending-blogs', (req, res) => {
 // Search Blogs
 server.post("/search-blogs", (req, res) => {
 
-    let { tag, page } = req.body;
+    let { tag, query, page } = req.body;
 
-    let findQuery = { tags: tag, draft: false };
+    let findQuery;
+
+    if (tag) {
+        findQuery = { tags: tag, draft: false };
+    } else if (query) {
+        findQuery = { draft: false, title: new RegExp(query, 'i') };
+    }
 
     let maxLimit = 2;
 
@@ -270,6 +282,21 @@ server.post("/search-blogs", (req, res) => {
         .limit(maxLimit)
         .then(blogs => {
             return res.status(200).json({ blogs })
+        })
+        .catch(err => {
+            return res.status(500).json({ error: err.message })
+        })
+})
+
+// Search Users
+server.post('/search-users', (req, res) => {
+    let { query } = req.body;
+
+    user.find({ "personal_info.username": new RegExp(query, 'i') })
+        .limit(50)
+        .select("personal_info.profile_img personal_info.username personal_info.fullname -_id")
+        .then(users => {
+            return res.status(200).json({ users })
         })
         .catch(err => {
             return res.status(500).json({ error: err.message })
