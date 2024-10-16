@@ -92,9 +92,18 @@
 
 # /search-blogs
 
-POST http://localhost:3000/search-blogs
+#POST http://localhost:3000/search-blogs
+#Content-Type: application/json
+#
+#{
+#		"tag": "fast food"
+#}
+
+# Search Users
+
+POST http://localhost:3000/search-users
 Content-Type: application/json
 
 {
-		"tag": "fast food"
+		"query": "bas"
 }
