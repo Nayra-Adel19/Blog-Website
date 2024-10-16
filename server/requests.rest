@@ -101,9 +101,28 @@
 
 # Search Users
 
-POST http://localhost:3000/search-users
+#POST http://localhost:3000/search-users
+#Content-Type: application/json
+#
+#{
+#		"query": "bas"
+#}
+
+
+# Get Profile any user already has account
+
+#POST http://localhost:3000/get-profile
+#Content-Type: application/json
+#
+#{
+#		"username": "basant32"
+#}
+
+# Get Profile any user don't have account
+
+POST http://localhost:3000/get-profile
 Content-Type: application/json
 
 {
-		"query": "bas"
+		"username": "edzdgcmhcvjknm"
 }

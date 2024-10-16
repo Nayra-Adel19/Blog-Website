@@ -303,6 +303,21 @@ server.post('/search-users', (req, res) => {
         })
 })
 
+// Get Profile
+server.post('/get-profile', (req, res) => {
+
+    let { username } = req.body;
+
+    user.findOne({ "personal_info.username": username })
+        .select("-personal_info.password -google_auth -updatedAt -blogs")
+        .then(User => {
+            return res.status(200).json(User)
+        })
+        .catch(err => {
+            return res.status(500).json({ error: err.message })
+        })
+})
+
 // Create Blog
 server.post('/create-blog', verifyJWT, (req, res) => {
 
