@@ -7,6 +7,8 @@
 #		"password": "Basant44"
 #}
 
+# access-token => basant44 => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YmJmZWU1YWNmNjFlZjA1MDA2YWJmYiIsImlhdCI6MTcyOTIxMTE1MX0.PA839ixA_44zaXoCUrU4VN31stfyqKBZ7vxiZyfUWPw"
+
 #POST http://localhost:3000/signin
 #Content-Type: application/json
 #
@@ -120,9 +122,21 @@
 
 # Get Profile any user don't have account
 
-POST http://localhost:3000/get-profile
-Content-Type: application/json
+#POST http://localhost:3000/get-profile
+#Content-Type: application/json
+#
+#{
+#		"username": "edzdgcmhcvjknm"
+#}
 
-{
-		"username": "edzdgcmhcvjknm"
-}
+# Change Password  => Basant44  to => Basant4
+
+#POST http://localhost:3000/change-password
+#Content-Type: application/json
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YmJmZWU1YWNmNjFlZjA1MDA2YWJmYiIsImlhdCI6MTcyOTIxMTE1MX0.PA839ixA_44zaXoCUrU4VN31stfyqKBZ7vxiZyfUWPw
+#
+#
+#{
+#		"currentPassword": "Basant44",
+#		"newPassword": "Basant4"
+#}
