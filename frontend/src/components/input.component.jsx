@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const InputBox = ({ name, type, id, value, placeholder, icon }) => {
+const InputBox = ({ name, type, id, value, placeholder, icon, disable = false }) => {
 
 	const [ passwordVisible, setPasswordVisible ] = useState(false);
 
@@ -12,6 +12,7 @@ const InputBox = ({ name, type, id, value, placeholder, icon }) => {
         placeholder={placeholder}
         defaultValue={value}
         id={id}
+				disabled={disable}
         icon={icon}
         className="input-box"
       />
@@ -22,7 +23,7 @@ const InputBox = ({ name, type, id, value, placeholder, icon }) => {
 
 				type == "password" ?
 				<i className={"fi fi-rr-eye" + (!passwordVisible ? "-crossed" : "" ) + " input-icon left-[auto] right-4 cursor-pointer"}
-				
+
 				onClick={() => setPasswordVisible(currentVal => !currentVal)}
 				></i>
 				: ""
