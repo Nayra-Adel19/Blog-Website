@@ -1,8 +1,9 @@
 node_modules
 .env
 react-js-duck-blog-firebase-adminsdk-jq9ct-0380317e4a.json
+package-lock.json
 
 ./node_modules
 ./.env
 ./react-js-duck-blog-firebase-adminsdk-jq9ct-0380317e4a.json
-
+./package-lock.json
