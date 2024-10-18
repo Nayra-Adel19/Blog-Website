@@ -188,6 +188,48 @@ server.post("/google-auth", async(req, res) => {
     }
 });
 
+// Change Password
+server.post("/change-password", verifyJWT, async(req, res) => {
+    try {
+        const { currentPassword, newPassword } = req.body;
+
+        if (!currentPassword || !newPassword) {
+            return res.status(400).json({ error: "Both current and new passwords are required" });
+        }
+
+        if (!passwordRegex.test(currentPassword) || !passwordRegex.test(newPassword)) {
+            return res.status(400).json({ error: "Password must be 6 to 20 characters long with at least one number, one lowercase letter, and one uppercase letter" });
+        }
+
+        const User = await user.findOne({ _id: req.user });
+        if (!User) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        if (User.google_auth) {
+            return res.status(403).json({ error: "You cannot change the password of an account logged in via Google" });
+        }
+
+        const isMatch = await bcrypt.compare(currentPassword, User.personal_info.password);
+        if (!isMatch) {
+            return res.status(403).json({ error: "Incorrect current password" });
+        }
+
+        if (currentPassword === newPassword) {
+            return res.status(400).json({ error: "New password must be different from the current password" });
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        await user.findOneAndUpdate({ _id: req.user }, { "personal_info.password": hashedPassword });
+
+        return res.status(200).json({ status: "Password changed successfully" });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "An error occurred while changing the password. Please try again later." });
+    }
+});
+
 // Latest Blogs
 server.post('/latest-blogs', (req, res) => {
 
