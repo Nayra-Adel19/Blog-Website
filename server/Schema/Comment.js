@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const commentSchema = mongoose.Schema({
-    
+
     blog_id: {
         type: Schema.Types.ObjectId,
         required: true,
@@ -27,14 +27,13 @@ const commentSchema = mongoose.Schema({
     },
     isReply: {
         type: Boolean,
+        default: false
     },
     parent: {
         type: Schema.Types.ObjectId,
         ref: 'comments'
     }
-
-},
-{
+}, {
     timestamps: {
         createdAt: 'commentedAt'
     }
