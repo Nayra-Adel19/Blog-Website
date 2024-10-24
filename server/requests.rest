@@ -140,3 +140,8 @@
 #		"currentPassword": "Basant44",
 #		"newPassword": "Basant4"
 #}
+
+# New Notification
+
+GET http://localhost:3000/new-notification
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YmJmZWU1YWNmNjFlZjA1MDA2YWJmYiIsImlhdCI6MTcyOTIxMTE1MX0.PA839ixA_44zaXoCUrU4VN31stfyqKBZ7vxiZyfUWPw
