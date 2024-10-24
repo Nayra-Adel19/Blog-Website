@@ -27,7 +27,7 @@ const CommentField = ({ action, index = undefined, replyingTo = undefined, setRe
         'Authorization': `Bearer ${access_token}`
       }
     })
-    .then((data) => {
+    .then(({ data }) => {
 
       setComment("");
 
