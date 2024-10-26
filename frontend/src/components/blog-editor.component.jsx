@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import duckLogo from '../imgs/img-logo.png';
 import AnimationWrapper from "../common/page-animation";
 import defaultBanner from "../imgs/blog-banner.png";
+import darkDefaultBanner from "../imgs/blog-banner-dark.png";
 import { useContext, useEffect } from "react";
 import { uploadImage } from '../common/upload-image';
 import { Toaster, toast } from "react-hot-toast";
@@ -9,11 +10,13 @@ import { EditorContext } from "../pages/editor.pages";
 import EditorJS from '@editorjs/editorjs'
 import { tools } from "./tools.component";
 import axios from "axios";
-import { UserContext } from "../App";
+import { UserContext, ThemeContext } from "../App";
 
 
 const BlogEditor = () => {
 		let { blog, blog: {title, banner, content, tags, des }, setBlog, textEditor, setTextEditor, setEditorState } = useContext(EditorContext)
+
+		let { theme } = useContext(ThemeContext);
 
 		let { userAuth: { access_token } } = useContext(UserContext);
 
@@ -70,7 +73,7 @@ const BlogEditor = () => {
 
 		const handleError = (e) => {
 			let img = e.target;
-			img.src = defaultBanner;
+			img.src = theme == "light" ? defaultBanner : darkDefaultBanner;
 		}
 
 		const handlePublishEvent = () => {
@@ -182,7 +185,7 @@ const BlogEditor = () => {
 
 												<textarea
 													defaultValue={title}
-													className="text-4xl font-medium w-full h-20 outline-none resize-none mt-10 leading-tight placeholder:opacity-40"
+													className="text-4xl font-medium w-full h-20 outline-none resize-none mt-10 leading-tight placeholder:opacity-40 bg-white"
 													placeholder="Blog Title"
 													onKeyDown={handleTitleKeyDown}
 													onChange={handleTitleChange}
