@@ -1,9 +1,15 @@
-import duckNotFound from '../imgs/sad-duck.gif';
+import duckNotFound from '../imgs/sad-cry.gif';
+import lightFullLogo from '../imgs/LightDuckFullLogo.png';
 import fullLogo from '../imgs/duckFullLogo.png';
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../App";
+import { useContext } from "react";
 
 
 const PageNotFound = () => {
+
+	let { theme } = useContext(ThemeContext);
+
 	return (
 		<section className="h-cover relative p-10 flex flex-col items-center gap-20 text-center">
 
@@ -13,7 +19,7 @@ const PageNotFound = () => {
 			<p className="text-dark-grey text-xl leading-7 -mt-8">The page you are looking for dose not exists. Head back to the <Link to="/" className="text-black underline">home page</Link></p>
 
 			<div className="mt-auto">
-				<img src={fullLogo} className="h-10 object-contain block mx-auto select-none" />
+				<img src={ theme == "light" ? fullLogo : lightFullLogo } className="h-10 object-contain block mx-auto select-none" />
 				<h4 className="text-xl font-gelasio leading-7">Quack Your Way to Success!</h4>
 				<p className="mt-5 text-dark-grey">Dive into Code with Ducks and explore millions of stories worldwide</p>
 			</div>
