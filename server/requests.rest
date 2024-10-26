@@ -143,5 +143,19 @@
 
 # New Notification
 
-GET http://localhost:3000/new-notification
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YmJmZWU1YWNmNjFlZjA1MDA2YWJmYiIsImlhdCI6MTcyOTIxMTE1MX0.PA839ixA_44zaXoCUrU4VN31stfyqKBZ7vxiZyfUWPw
+#GET http://localhost:3000/new-notification
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YmJmZWU1YWNmNjFlZjA1MDA2YWJmYiIsImlhdCI6MTcyOTIxMTE1MX0.PA839ixA_44zaXoCUrU4VN31stfyqKBZ7vxiZyfUWPw
+
+# Manage Blogs
+
+#  basant55 => "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmRjOWJhNTJkNmY2NGM3NGJkZWVkOSIsImlhdCI6MTcyOTg2NzEwN30.On0xIgcpOTR5WyX4-ggUJVZGYcO9V2cQj01NUqZYr90",
+
+
+POST http://localhost:3000/user-written-blogs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmRjOWJhNTJkNmY2NGM3NGJkZWVkOSIsImlhdCI6MTcyOTg2NzEwN30.On0xIgcpOTR5WyX4-ggUJVZGYcO9V2cQj01NUqZYr90
+Content-Type: application/json
+
+{
+    "page": 1,
+		"draft": true
+}
