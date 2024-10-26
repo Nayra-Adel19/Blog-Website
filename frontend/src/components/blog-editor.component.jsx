@@ -53,7 +53,6 @@ const BlogEditor = () => {
     };
 
 		const handleTitleKeyDown = (e) => {
-			console.log(e);
 			if(e.keyCode == 13){
 					e.preventDefault();
 			}
@@ -61,7 +60,6 @@ const BlogEditor = () => {
 
 		const handleTitleChange = (e) => {
 			let input = e.target;
-			console.log(input.scrollHeight);
 
 			input.style.height = "auto";
 			input.style.height = input.scrollHeight + "px";
@@ -129,7 +127,7 @@ const BlogEditor = () => {
 						toast.success("Saved 🎉😍");
 
 						setTimeout(() => {
-							navigate("/")
+							navigate("/dashboard/blogs?tab=draft")
 						}, 500);
 
 					})
