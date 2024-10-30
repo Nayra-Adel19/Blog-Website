@@ -74,7 +74,7 @@ The **`DUCK Blog Website`** utilizes the **`MERN Stack`**, incorporating the fol
 
 ## `Demo` 🎬
 
-### Check out the Video Demo of DUCK Blog Website [here](https://www.youtube.com)
+### Check out the Video Demo of DUCK Blog Website [here](https://www.youtube.com/watch?v=hhSB2k92W_s)
 
 ---
 
